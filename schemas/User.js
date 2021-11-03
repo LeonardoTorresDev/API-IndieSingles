@@ -10,8 +10,7 @@ const UserSchema = Schema({
     email: {
         type: String,
         required: [true, 'Email is required'],
-        unique: true,
-        match: '^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$'
+        unique: true
     },
     password: {
         type: String,
