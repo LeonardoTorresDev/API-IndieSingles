@@ -29,7 +29,6 @@ npm run
 - Publish-subscribe based communication between fans and artist featuring Amazon SNS
 - S3 storage for audio and image files
 - Deployed on Heroku
-- Login using passport.js
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

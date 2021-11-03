@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
-const {databaseConnection} = require('../configuration/database');
+const {databaseConnection} = require('../configuration/databaseConfiguration');
 
 class Server{
 
@@ -43,7 +43,7 @@ class Server{
             limits: { fileSize: 50 * 1024 * 1024 },
             useTempFiles: true,
             tempFileDir: '/tmp'
-        }))
+        }));
 
     }
 
