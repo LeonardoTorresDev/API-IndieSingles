@@ -25,10 +25,13 @@ const uniqueUserEmail = async (userEmail) => {
 }
 
 const userNotExists = async (userId) => {
+
     const userExists = await User.findById(userId).exec();
+
     if (!userExists) {
         throw new Error('User does not exist on database.');
     }
+    
 }
 
 module.exports = {

@@ -42,10 +42,15 @@ const fileToBase64 = (mimetype, buffer ) => {
  
 }
 
+const standardTopicName = userName => {
+    userName = userName.replace(' ', '_');
+    return userName + '_topic';
+}
 
 module.exports = {
     encryptPassword,
     generateJWT,
     imageExtensionValidator,
-    fileToBase64
+    fileToBase64,
+    standardTopicName
 };

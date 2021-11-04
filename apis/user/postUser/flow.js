@@ -1,9 +1,10 @@
 const User = require('../../../schemas/User');
 
-const { encryptPassword, generateJWT } = require('../../../utils/utils');
+const { encryptPassword, generateJWT, standardTopicName } = require('../../../utils/utils');
 const { errorResponse } = require('../../../utils/responses');
+const { createSNSTopic } = require('../../../services/createSNSTopic');
 
-const createUserFlow = async (req, res) => {
+const postUserFlow = async (req, res) => {
 
     const {
         name,
@@ -23,7 +24,13 @@ const createUserFlow = async (req, res) => {
 
         user.password = encryptPassword(password);
 
+        const topicName = standardTopicName(user.name);
+        const topicArn = await createSNSTopic(topicName);
+
+        user.topicArn = topicArn;
+
         await user.save();
+
         const token = await generateJWT(user._id);
 
         return res.status(201).json({
@@ -33,10 +40,10 @@ const createUserFlow = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return errorResponse(res, "User creation failed: contact administrator", error, 500);
     }
 
 }
 
-module.exports = createUserFlow;
+module.exports = postUserFlow;

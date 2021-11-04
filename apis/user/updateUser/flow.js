@@ -8,47 +8,43 @@ const { imageExtensionValidator, encryptPassword } = require('../../../utils/uti
 
 const updateUserFlow = async (req, res) => {
 
-    const {
-        password,
-        name
-    } = req.body;
-
-    const fileImage = '';
+    const { password, description } = req.body;
+    let fileImage = '';
 
     if(req.files){
         if(!imageExtensionValidator(req.files.file.name)) {
             return customErrorResponse(res, "Invalid image extension", 401);
-        }
+        }   
         fileImage = req.files.file;
     }
 
     try {
 
-        const user = await User.findById(req.user._id).exec();
+        let user = await User.findById(req.user._id).exec();
+        user.description = description;
 
         if(password){ 
             user.password = encryptPassword(password);
         }
         
-        if(name){
-            user.name = name;
-        }
-
-        if(fileImage.length > 0){
+        if(fileImage){
             if(user.profileImage){
                 cloudinaryImageDelete(user.profileImage);
             }
-            user.profileImage = await cloudinaryImageUpload(fileImage);   
+            user.profileImage = await cloudinaryImageUpload(fileImage);
         }
 
+        user.updatedAt = Date.now();
         await user.save();
-        customResponse(res, "User updated successfully");
+
+        return customResponse(res, "User updated successfully");
 
     }
     catch(error){
         console.log(error);
         errorResponse(res, "Contact database administrator", error, 500);
     }
+    
 }
 
 module.exports = updateUserFlow;

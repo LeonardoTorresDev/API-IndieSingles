@@ -31,12 +31,19 @@ const UserSchema = Schema({
     profileImage: {
         type: String
     },
+    topicArn: {
+        type: String,
+        required: true
+    },
     userRecords: [
         {
             type: Schema.Types.ObjectId,
             ref: 'Record'
         }
     ],
+    description: {
+        type: String
+    },
     createdAt: {
         type: Date,
         required: true

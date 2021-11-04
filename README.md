@@ -27,7 +27,7 @@ npm run
 ## Integrations
 - Connection with MongoDB Atlas
 - Publish-subscribe based communication between fans and artist featuring Amazon SNS
-- S3 storage for audio and image files
+- Cloudinary storage for audio and image files
 - Deployed on Heroku
 
 ## License

@@ -12,13 +12,16 @@ const RecordSchema = Schema({
         enum: [ 'single', 'ep', 'album' ]
     },
     duration: {
-        type: Number
+        type: Number,
+        default: 0
     },
     countSongs: {
-        type: Number
+        type: Number,
+        default: 0
     },
     recordImage: {
-        type: String
+        type: String,
+        required: [ true, 'recordImage is required']
     },
     releaseDate: {
         type: Date,

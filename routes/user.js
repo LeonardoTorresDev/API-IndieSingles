@@ -1,8 +1,8 @@
 const { Router } = require('express');
 
-//CreateUser Flow and Validators
-const createUserFlow = require('../apis/user/createUser/flow');
-const createUserValidators = require('../apis/user/createUser/validators');
+//PostUser Flow and Validators
+const postUserFlow = require('../apis/user/postUser/flow');
+const postUserValidators = require('../apis/user/postUser/validators');
 
 //Login Flow and Validators
 const loginUserFlow = require('../apis/user/loginUser/flow');
@@ -12,11 +12,21 @@ const loginUserValidators = require('../apis/user/loginUser/validators');
 const updateUserFlow = require('../apis/user/updateUser/flow');
 const updateUserValidators = require('../apis/user/updateUser/validators');
 
+//SubscribeUser Flow and Validators
+const subscribeUserFlow = require('../apis/user/subscribeUser/flow');
+const subscribeUserValidators = require('../apis/user/subscribeUser/validators');
+
+//UnsubscribeUser Flow and Validators
+const unsubscribeUserFlow = require('../apis/user/unsubscribeUser/flow');
+const unsubscribeUserValidators = require('../apis/user/unsubscribeUser/validators');
+
 const router = Router();
 
-router.post('/', createUserValidators, createUserFlow);
+router.post('/', postUserValidators, postUserFlow);
 router.post('/login', loginUserValidators, loginUserFlow);
 
 router.put('/', updateUserValidators, updateUserFlow);
+router.put('/subscribe', subscribeUserValidators, subscribeUserFlow);
+router.put('/unsubscribe', unsubscribeUserValidators, unsubscribeUserFlow);
 
 module.exports = router;

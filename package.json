@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/LTSpark/API-IndieSingles#readme",
   "dependencies": {
-    "aws-sdk": "^2.1020.0",
+    "aws-sdk": "^2.1021.0",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.27.1",
     "cors": "^2.8.5",
