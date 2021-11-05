@@ -17,13 +17,15 @@ const unsubscribeUserFlow = async (req, res) => {
         await User.findByIdAndUpdate(user._id, {
             $pull: {
                 userSubscriptions: userToUnsubscribeId
-            }
+            },
+            updatedAt: Date.now()
         }).exec();
 
         const userToUnsubscribe = await User.findByIdAndUpdate(userToUnsubscribeId, {
             $pull: {
                 userSubscribers: user._id
-            }
+            },
+            updatedAt: Date.now()
         }).exec();
 
         unsubscribeSNSTopic(userToUnsubscribe.topicArn, user.email);

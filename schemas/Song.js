@@ -1,21 +1,23 @@
 const { Schema, model } = require('mongoose');
 
 const SongSchema = Schema({
-
     name: {
         type: String,
         required: [ true, 'Name is required' ]
     },
-    duration: {
-        type: Number
-    },
-    songURL: {
+    songUrl: {
         type: String,
         required: [ true, 'SongURL is required']
     },
-    songRecord: {
-        type: Schema.Types.ObjectId,
-        ref: 'Record'
+    songImage: {
+        type: String,
+        required: [ true, 'Image is required']
+    },
+    description: {
+        type: String
+    },
+    genre: {
+        type: String
     },
     songUser: {
         type: Schema.Types.ObjectId,
@@ -29,7 +31,6 @@ const SongSchema = Schema({
         type: Date,
         required: true
     }
-
 });
 
 SongSchema.methods.toJSON = function () {

@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-const CommentaryRecordSchema = Schema({
+const CommentarySongSchema = Schema({
 
     commentary: {
         type: String,
@@ -10,9 +10,9 @@ const CommentaryRecordSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    commentaryRecord: {
+    commentarySong: {
         type: Schema.Types.ObjectId,
-        ref: 'Record'
+        ref: 'Song'
     },
     createdAt: {
         type: Date,
@@ -21,9 +21,9 @@ const CommentaryRecordSchema = Schema({
 
 });
 
-CommentaryRecordSchema.methods.toJSON = function () {
-    const { __v, ...commentaryRecord } = this.toObject();
-    return commentaryRecord;
+CommentarySongSchema.methods.toJSON = function () {
+    const { __v, ...commentarySong } = this.toObject();
+    return commentarySong;
 }
 
-module.exports = model('CommentaryRecord', CommentaryRecordSchema);
+module.exports = model('CommentarySong', CommentarySongSchema);

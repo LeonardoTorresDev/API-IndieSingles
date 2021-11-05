@@ -35,10 +35,16 @@ const UserSchema = Schema({
         type: String,
         required: true
     },
-    userRecords: [
+    userSongs: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Record'
+            ref: 'Song'
+        }
+    ],
+    userPosts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Post'
         }
     ],
     description: {

@@ -25,6 +25,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-validator": "^6.13.0",
+    "get-mp3-duration": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12"
   }

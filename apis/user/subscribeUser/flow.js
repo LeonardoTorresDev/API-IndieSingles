@@ -15,8 +15,19 @@ const subscribeUserFlow = async (req, res) => {
 
     try{
 
-        await User.findByIdAndUpdate(user._id,{ $addToSet : { userSubscriptions: userToSubscribeId } }, { new: true}).exec();          
-        const userToSubscribe = await User.findByIdAndUpdate(userToSubscribeId,{ $addToSet : { userSubscribers: user._id } }, { new: true}).exec(); 
+        await User.findByIdAndUpdate(user._id,{ 
+            $addToSet : { 
+                userSubscriptions: userToSubscribeId 
+            },
+            updatedAt: Date.now() 
+        }, { new: true}).exec();
+
+        const userToSubscribe = await User.findByIdAndUpdate(userToSubscribeId,{
+            $addToSet : { 
+                userSubscribers: user._id 
+            },
+            updatedAt: Date.now()
+        }, { new: true}).exec(); 
 
         subscribeSNSTopic(userToSubscribe.topicArn, user.email);
 

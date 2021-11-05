@@ -4,7 +4,6 @@ const { customErrorResponse } = require('../utils/responses');
 
 const validImageExtensions = [ 'jpg', 'jpeg', 'png'];
 const validAudioExtensions = [ 'mp3', 'wav', 'wma'];
-const validRecordTypes = [ 'single', 'ep' , 'album'];
 
 const fileValidator = (req, res, next) => {
     if(!req.files) {
@@ -12,6 +11,16 @@ const fileValidator = (req, res, next) => {
     }
     if(!req.files.file){
         return customErrorResponse(res, "File not sent correctly", 400);
+    }
+    next();
+}
+
+const songValidator = (req, res, next) => {
+    if(!req.files) {
+        return customErrorResponse(res, "Song not sent", 400);
+    }
+    if(!req.files.song){
+        return customErrorResponse(res, "Song not sent correctly", 400);
     }
     next();
 }
@@ -109,6 +118,7 @@ const differentUserUnsubscribe = (req, res, next) => {
 
 module.exports = {
     fileValidator,
+    songValidator,
     imageExtensionMiddleware,
     audioExtensionMiddleware,
     validRecordType,
