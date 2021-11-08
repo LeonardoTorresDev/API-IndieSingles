@@ -64,14 +64,12 @@ const postSongFlow = async(req, res) => {
 
 const formatMessage = (song, user) => {
 
-    const message = `Hi! We want to show you the brand new song by one of the artists that you are subscribe to.
+    return `Hi! We want to show you the brand new song by one of the artists that you are subscribe to.
 ${user.name} has uploaded a ${song.genre} song named ${song.name}
-Description: ${song.description} 
-Date: ${song.createdAt}. 
+Description: ${song.description}
+Release date: ${song.createdAt}.
 You can listen to it at ${song.songUrl}`;
     
-    return message;
-
 }
 
 module.exports = postSongFlow;

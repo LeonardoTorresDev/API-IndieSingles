@@ -11,9 +11,11 @@ const unsubscribeSNSTopic = async(topicArn, userToUnsubscribeEmail) => {
     const subscriptions = await listSubscriptions(topicArn);
 
     const subscriptionArn = getSubscriptionArn(subscriptions, userToUnsubscribeEmail);
-    
-    unsubscribeTopic(subscriptionArn);
-       
+
+    if(subscriptionArn != 'PendingConfirmation'){
+        unsubscribeTopic(subscriptionArn);
+    }
+     
 }
 
 const listSubscriptions = async topicArn => {
@@ -24,7 +26,7 @@ const listSubscriptions = async topicArn => {
 
     var subslistPromise = new AWS.SNS({apiVersion: '2010-03-31'}).listSubscriptionsByTopic(params).promise();
 
-    const subscriptions = await subslistPromise.then(
+    return subslistPromise.then(
         (data) => {
             return data.Subscriptions;
         }).catch(
@@ -33,8 +35,6 @@ const listSubscriptions = async topicArn => {
         }
     );
 
-    return subscriptions;
-
 }
 
 
@@ -42,8 +42,7 @@ const getSubscriptionArn = (subscriptions, email) => {
 
     let subscriptionArn = '';
 
-    for(i=0; i<subscriptions.length; i++){     
-        let subscription = subscriptions[i];
+    for(let subscription of subscriptions) {
         if (subscription.Endpoint === email){
             subscriptionArn = subscription.SubscriptionArn;
             break;
