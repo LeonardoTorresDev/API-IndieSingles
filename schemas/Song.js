@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const SongSchema = Schema({
+
     name: {
         type: String,
         required: [ true, 'Name is required' ]
@@ -31,6 +32,7 @@ const SongSchema = Schema({
         type: Date,
         required: true
     }
+
 });
 
 SongSchema.methods.toJSON = function () {

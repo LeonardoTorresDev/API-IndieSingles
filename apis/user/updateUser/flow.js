@@ -1,6 +1,6 @@
 const User = require('../../../schemas/User');
 
-const { cloudinaryImageDelete } = require('../../../services/cloudinaryImageDelete');
+const { cloudinaryDelete } = require('../../../services/cloudinaryDelete');
 const { cloudinaryImageUpload } = require('../../../services/cloudinaryImageUpload');
 
 const { customErrorResponse, errorResponse, customResponse } = require('../../../utils/responses');
@@ -29,7 +29,7 @@ const updateUserFlow = async (req, res) => {
         
         if(fileImage){
             if(user.profileImage){
-                cloudinaryImageDelete(user.profileImage);
+                cloudinaryDelete(user.profileImage, 'Images');
             }
             user.profileImage = await cloudinaryImageUpload(fileImage);
         }

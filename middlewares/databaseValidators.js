@@ -1,6 +1,7 @@
 const User = require('../schemas/User');
+const Song = require('../schemas/Song');
 
-const uniqueUserName = async (userName) => {
+const uniqueUserName = async userName => {
 
     const userNameExists = await User.findOne({
         name: userName
@@ -12,7 +13,7 @@ const uniqueUserName = async (userName) => {
 
 }
 
-const uniqueUserEmail = async (userEmail) => {
+const uniqueUserEmail = async userEmail => {
 
     const userEmailExists = await User.findOne({
         email: userEmail
@@ -24,7 +25,7 @@ const uniqueUserEmail = async (userEmail) => {
 
 }
 
-const userNotExists = async (userId) => {
+const userNotExists = async userId => {
 
     const userExists = await User.findById(userId).exec();
 
@@ -34,8 +35,19 @@ const userNotExists = async (userId) => {
     
 }
 
+const songNotExists = async songId => {
+
+    const songExists = await Song.findById(songId).exec();
+
+    if (!songExists) {
+        throw new Error('Song does not exist on database.');
+    }
+    
+}
+
 module.exports = {
     uniqueUserEmail,
     uniqueUserName,
-    userNotExists
+    userNotExists,
+    songNotExists
 }

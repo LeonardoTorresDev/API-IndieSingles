@@ -2,7 +2,7 @@ const User = require('../../../schemas/User');
 
 const { errorResponse } = require('../../../utils/responses');
 
-const getUserFlow = async (req, res) => {
+const getUsersFlow = async (req, res) => {
 
     let { 
         from = 0, 
@@ -24,4 +24,4 @@ const getUserFlow = async (req, res) => {
 
 }
 
-module.exports = getUserFlow;
+module.exports = getUsersFlow;

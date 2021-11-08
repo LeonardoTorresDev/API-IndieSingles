@@ -5,9 +5,12 @@ const user = require('./user');
 const song = require('./song');
 
 const users = require('./users');
+const songs = require('./songs');
 
 router.use('/user', user);
 router.use('/song', song);
+
 router.use('/users', users);
+router.use('/songs', songs);
 
 module.exports = router;
