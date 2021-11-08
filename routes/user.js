@@ -20,6 +20,10 @@ const subscribeUserValidators = require('../apis/user/subscribeUser/validators')
 const unsubscribeUserFlow = require('../apis/user/unsubscribeUser/flow');
 const unsubscribeUserValidators = require('../apis/user/unsubscribeUser/validators');
 
+//GetUser Flow and Validators
+const getUserFlow = require('../apis/user/getUser/flow');
+const getUserValidators = require('../apis/user/getUser/validators');
+
 const router = Router();
 
 router.post('/', postUserValidators, postUserFlow);
@@ -28,5 +32,7 @@ router.post('/login', loginUserValidators, loginUserFlow);
 router.put('/', updateUserValidators, updateUserFlow);
 router.put('/subscribe', subscribeUserValidators, subscribeUserFlow);
 router.put('/unsubscribe', unsubscribeUserValidators, unsubscribeUserFlow);
+
+router.get('/', getUserValidators, getUserFlow);
 
 module.exports = router;
