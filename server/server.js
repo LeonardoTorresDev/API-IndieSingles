@@ -28,7 +28,7 @@ class Server{
 
         //CORS
         this.app.use(cors({
-            origin: ['http://localhost:3000'],
+            origin: '*',
             methods: ['GET', 'PATCH', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
             allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
             credentials: true
