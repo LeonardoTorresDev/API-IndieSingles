@@ -7,11 +7,11 @@ const { userIsNotSubscribed, differentUserUnsubscribe } = require('../../../midd
 
 const unsubscribeUserValidators = [
     authToken,
-    differentUserUnsubscribe,
-    userIsNotSubscribed,
     query('userToUnsubscribeId').isMongoId(),
     query('userToUnsubscribeId').custom(userNotExists),
-    fieldValidation    
+    fieldValidation,
+    differentUserUnsubscribe,
+    userIsNotSubscribed
 ];
 
 module.exports = unsubscribeUserValidators;

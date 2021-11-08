@@ -46,7 +46,7 @@ class Server{
     }
 
     routes(){
-        this.app.use('/api',require('../routes/index'));
+        this.app.use('/api', require('../routes/index'));
     }
 
     listen(){

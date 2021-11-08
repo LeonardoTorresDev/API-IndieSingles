@@ -1,4 +1,5 @@
 const User = require('../schemas/User');
+const Song = require('../schemas/Song');
 
 const { customErrorResponse } = require('../utils/responses');
 
@@ -90,7 +91,7 @@ const userIsNotSubscribed = async (req, res, next) => {
 }
 
 const subscriberQuery = async ( userLoggedId, userToSubscribeId) => {
-    return await User.findOne({
+    return User.findOne({
         _id: userToSubscribeId,
         userSubscribers: {
             $in: [userLoggedId]
@@ -116,6 +117,23 @@ const differentUserUnsubscribe = (req, res, next) => {
     next();
 }
 
+const sameSongAuthor = async(req, res, next) => {
+
+    const { songId } = req.query;
+    const { songUser } = await Song.findById(songId).exec();
+
+    const songAuthor = songUser.toString();
+    const userLoggedId = req.user._id.toString();
+
+    if( songAuthor != userLoggedId ) {
+        return customErrorResponse(res, "Cannot delete another user's songs", 401);
+    }
+
+    next();
+
+}
+
+
 module.exports = {
     fileValidator,
     songValidator,
@@ -125,5 +143,6 @@ module.exports = {
     userAlreadySubscribed,
     userIsNotSubscribed,
     differentUserSubscribe,
-    differentUserUnsubscribe
+    differentUserUnsubscribe,
+    sameSongAuthor
 };

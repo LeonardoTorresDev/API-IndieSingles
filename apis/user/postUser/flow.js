@@ -24,7 +24,7 @@ const postUserFlow = async (req, res) => {
 
         user.password = encryptPassword(password);
 
-        const topicName = standardTopicName(user.name);
+        const topicName = standardTopicName(user._id);
         const topicArn = await createSNSTopic(topicName);
 
         user.topicArn = topicArn;

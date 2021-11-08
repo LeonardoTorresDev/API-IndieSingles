@@ -7,11 +7,11 @@ const { userAlreadySubscribed, differentUserSubscribe } = require('../../../midd
 
 const subscribeUserValidators = [
     authToken,
-    differentUserSubscribe,
-    userAlreadySubscribed,
     query('userToSubscribeId').isMongoId(),
     query('userToSubscribeId').custom(userNotExists),
-    fieldValidation    
+    fieldValidation,
+    differentUserSubscribe,
+    userAlreadySubscribed
 ];
 
 module.exports = subscribeUserValidators;

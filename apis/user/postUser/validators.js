@@ -4,7 +4,7 @@ const { fieldValidation } = require('../../../middlewares/fieldValidation');
 const { uniqueUserEmail, uniqueUserName } = require('../../../middlewares/databaseValidators');
 
 const postUserValidators = [
-    body('name').isLength({ min: 5, max: 30}).trim().escape(),
+    body('name').isLength({ min: 3, max: 40}).trim().escape(),
     body(
         'password',
         'Password has to contain one digit, one lower, one upper and has to be eight characters long'

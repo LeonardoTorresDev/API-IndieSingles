@@ -43,7 +43,6 @@ const fileToBase64 = (mimetype, buffer ) => {
 }
 
 const standardTopicName = userName => {
-    userName = userName.replace(/ /g, '_');
     return userName + '_topic';
 }
 
