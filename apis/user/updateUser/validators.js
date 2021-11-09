@@ -5,7 +5,7 @@ const { authToken } = require('../../../middlewares/authToken');
 
 const updateUserValidators = [
     authToken,
-    body('description').optional().not().isEmpty().trim().escape(),
+    body('description').optional().not().isEmpty().trim(),
     body('password').optional().matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
     fieldValidation
 ];

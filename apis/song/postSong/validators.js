@@ -16,9 +16,9 @@ const postSongValidators = [
     imageExtensionMiddleware,
     songValidator,
     audioExtensionMiddleware,
-    body('name').not().isEmpty().trim().escape(),
-    body('description').not().isEmpty().trim().escape(),
-    body('genre').not().isEmpty().trim().escape(),
+    body('name').not().isEmpty().trim(),
+    body('description').not().isEmpty().trim(),
+    body('genre').not().isEmpty().trim(),
     fieldValidation
 ];
 
