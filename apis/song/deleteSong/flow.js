@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-
 const Song = require('../../../schemas/Song');
 const User = require('../../../schemas/User');
+const CommentarySong = require('../../../schemas/CommentarySong');
 
 const { customResponse, errorResponse } = require('../../../utils/responses');
 const { cloudinaryDelete } = require('../../../services/cloudinaryDelete');
@@ -11,9 +10,6 @@ const deleteSongFlow = async(req, res) => {
     const { songId } = req.query;
     const { _id } = req.user;
  
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try{
 
         const song = await Song.findByIdAndRemove(songId).exec();
@@ -25,11 +21,16 @@ const deleteSongFlow = async(req, res) => {
             _id,
             {
                 $pull: {
-                    userSongs: song._id
+                    userSongs: song._id,
+                    userCommentarySongs: {
+                        $in: song.songCommentaries
+                    }
                 },
                 updatedAt: Date.now()
             }
         ).exec();
+
+        await CommentarySong.deleteMany({ commentarySong: song._id }).exec();
         
         return customResponse(res, 'Song deleted successfully');
 

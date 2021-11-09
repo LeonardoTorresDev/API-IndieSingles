@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-
 const Song = require('../../../schemas/Song');
 const User = require('../../../schemas/User');
 
@@ -31,9 +29,6 @@ const postSongFlow = async(req, res) => {
         updatedAt: Date.now()
     });
 
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try {
 
         await song.save();
@@ -46,18 +41,13 @@ const postSongFlow = async(req, res) => {
 
         publishSNSTopic(req.user.topicArn, formatMessage(song, req.user));
         
-        session.commitTransaction();
         return customResponse(res, "Song created successfully", 201);
 
     } catch (error) {
 
         console.log(error);
-        await session.abortTransaction();
         return errorResponse(res, "Song creation failed: contact administrator", error, 500);
 
-    }
-    finally{
-        session.endSession();
     }
 
 }

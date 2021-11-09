@@ -24,6 +24,12 @@ const SongSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    songCommentaries: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'CommentarySong'
+        }
+    ],
     createdAt: {
         type: Date,
         required: true

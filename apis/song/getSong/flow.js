@@ -8,7 +8,18 @@ const getSongFlow = async (req, res) => {
 
     try {
 
-        const song = await Song.findById(songId).populate('songUser', 'name').exec();
+        const song = await Song.findById(songId)
+                                .populate({
+                                    path: 'songCommentaries',
+                                    populate: {
+                                        path: 'commentaryUser',
+                                        model: 'User',
+                                        select: 'name'
+                                    }
+                                })
+                                .populate('songUser', 'name')
+                                .exec();
+                                
         return res.send(song);
 
     } catch (error) {

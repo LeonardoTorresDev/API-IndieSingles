@@ -47,6 +47,12 @@ const UserSchema = Schema({
             ref: 'Post'
         }
     ],
+    userCommentarySongs: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'CommentarySong'  
+        }
+    ],
     description: {
         type: String
     },
