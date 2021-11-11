@@ -4,6 +4,7 @@ const User = require('../../../schemas/User');
 const { cloudinaryAudioUpload } = require('../../../services/cloudinaryAudioUpload');
 const { cloudinaryImageUpload } = require('../../../services/cloudinaryImageUpload');
 const { publishSNSTopic } = require('../../../services/publishSNSTopic');
+
 const { customResponse, errorResponse} = require('../../../utils/responses');
 
 const postSongFlow = async(req, res) => {
@@ -54,11 +55,13 @@ const postSongFlow = async(req, res) => {
 
 const formatMessage = (song, user) => {
 
+    const link = `${process.env.FRONTEND_URL}/app/songs/${song._id}`;
+
     return `Hi! We want to show you the brand new song by one of the artists that you are subscribe to.
 ${user.name} has uploaded a ${song.genre} song named ${song.name}
 Description: ${song.description}
 Release date: ${song.createdAt}.
-You can listen to it at ${song.songUrl}`;
+You can listen to it at ${link}`;
     
 }
 
