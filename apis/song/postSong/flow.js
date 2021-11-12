@@ -55,7 +55,7 @@ const postSongFlow = async(req, res) => {
 
 const formatMessage = (song, user) => {
 
-    const link = `${process.env.FRONTEND_URL}/app/songs/${song._id}`;
+    const link = `${process.env.FRONTEND_URL}/songs/${song._id}`;
 
     return `Hi! We want to show you the brand new song by one of the artists that you are subscribe to.
 ${user.name} has uploaded a ${song.genre} song named ${song.name}

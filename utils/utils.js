@@ -35,7 +35,7 @@ const imageExtensionValidator = fileName => {
 
 }
 
-const fileToBase64 = (mimetype, buffer ) => {
+const fileToBase64 = ( mimetype, buffer ) => {
 
     const base64Buffer = Buffer.from(buffer).toString('base64');
     return 'data:' + mimetype + ';base64,' + base64Buffer;
