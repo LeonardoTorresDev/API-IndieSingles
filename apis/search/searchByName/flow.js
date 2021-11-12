@@ -3,7 +3,7 @@ const Song = require('../../../schemas/Song');
 
 const { errorResponse } = require('../../../utils/responses');
 
-const searchNamesFlow = async(req, res) => {
+const searchByNameFlow = async(req, res) => {
 
     const { name } = req.query;
 
@@ -34,4 +34,4 @@ const searchNamesFlow = async(req, res) => {
 
 }
 
-module.exports = searchNamesFlow;
+module.exports = searchByNameFlow;

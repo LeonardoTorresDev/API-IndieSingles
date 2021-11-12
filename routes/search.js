@@ -1,11 +1,11 @@
 const { Router } = require('express');
 
 //SearchNames Flow and Validators
-const searchNamesFlow = require('../apis/search/searchNames/flow');
-const searchNamesValidators = require('../apis/search/searchNames/validators');
+const searchByNameFlow = require('../apis/search/searchByName/flow');
+const searchByNameValidators = require('../apis/search/searchByName/validators');
 
 const router = Router();
 
-router.get('/name', searchNamesValidators, searchNamesFlow);
+router.get('/name', searchByNameValidators, searchByNameFlow);
 
 module.exports = router;
