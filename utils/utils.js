@@ -42,8 +42,14 @@ const fileToBase64 = ( mimetype, buffer ) => {
  
 }
 
-const standardTopicName = userName => {
-    return userName + '_topic';
+const standardTopicName = ( userName, userId) => {
+
+    let topic = userName.replace(/ /g,"_");
+    topic = topic.replace(/[^A-Za-z0-9_-]/g,"").toLowerCase();
+    topic = `${topic}_${userId}_topic`;
+
+    return topic;
+
 }
 
 module.exports = {
