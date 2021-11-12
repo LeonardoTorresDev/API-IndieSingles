@@ -12,7 +12,10 @@ const searchNamesFlow = async(req, res) => {
     try{
 
         const usersFound = await User.find({ name: regex }).exec();
-        const songsFound = await Song.find({ name: regex }).exec();
+        
+        const songsFound = await Song.find(
+            { name: regex 
+        }).populate('songUser', 'name').exec();
 
         const results = {
             users: usersFound,
