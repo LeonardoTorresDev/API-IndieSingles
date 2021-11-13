@@ -3,8 +3,8 @@ const Song = require('../schemas/Song');
 
 const { customErrorResponse } = require('../utils/responses');
 
-const validImageExtensions = [ 'jpg', 'jpeg', 'png'];
-const validAudioExtensions = [ 'mp3', 'wav', 'wma'];
+const validImageExtensions = [ 'jpg', 'jpeg', 'png', 'JPG', 'JPEG', 'PNG'];
+const validAudioExtensions = [ 'mp3', 'wav', 'wma', 'MP3', 'WAV', 'WMA'];
 
 const fileValidator = (req, res, next) => {
     if(!req.files) {
